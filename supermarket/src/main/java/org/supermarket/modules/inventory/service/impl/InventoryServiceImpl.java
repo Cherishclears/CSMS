@@ -136,6 +136,15 @@ public class InventoryServiceImpl extends ServiceImpl<InventoryMapper, Inventory
         inventory.setQuantity(newQty);
         updateById(inventory);
         saveRecord(storeId, productId, 5, diff, before, newQty, remark);
+        syncToRedis(storeId, productId, newQty);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateWarningQty(Long storeId, Long productId, BigDecimal warningQty) {
+        Inventory inventory = getOrCreate(storeId, productId);
+        inventory.setWarningQty(warningQty);
+        updateById(inventory);
     }
 
     // ---- 私有方法 ----

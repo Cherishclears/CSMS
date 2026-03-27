@@ -78,7 +78,6 @@ const router = createRouter({
 // 路由守卫：未登录跳转到登录页
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
-
   if (to.path === '/login') {
     if (userStore.isLoggedIn) return next('/')
     return next()

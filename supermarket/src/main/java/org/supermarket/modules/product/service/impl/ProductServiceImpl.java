@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.supermarket.common.exception.BusinessException;
@@ -18,6 +19,7 @@ import org.supermarket.modules.product.service.ProductService;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.util.StringUtils;
 
@@ -33,6 +35,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product>
         implements ProductService {
 
     private final StoreProductConfigMapper storeProductConfigMapper;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     @Override
     public Page<Product> pageProduct(int pageNum, int pageSize,
@@ -67,6 +70,13 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product>
         Product old = getById(product.getId());
         if (old == null) throw new BusinessException(ResultCode.PRODUCT_NOT_FOUND);
         updateById(product);
+        // 清除该商品所有条形码相关缓存
+        if (StringUtils.hasText(old.getBarcode())) {
+            Set<String> keys = redisTemplate.keys("product:barcode:" + old.getBarcode() + ":*");
+            if (keys != null && !keys.isEmpty()) {
+                redisTemplate.delete(keys);
+            }
+        }
     }
 
     @Override

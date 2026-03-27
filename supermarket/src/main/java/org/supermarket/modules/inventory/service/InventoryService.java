@@ -22,4 +22,7 @@ public interface InventoryService extends IService<Inventory> {
 
     // 盘点调整库存
     void adjust(Long storeId, Long productId, BigDecimal newQty, String remark);
+
+    // 设置预警下限
+    void updateWarningQty(Long storeId, Long productId, BigDecimal warningQty);
 }

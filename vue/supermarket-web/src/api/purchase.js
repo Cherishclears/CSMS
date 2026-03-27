@@ -23,3 +23,7 @@ export function receivePurchase(id) {
 export function cancelPurchase(id) {
   return request.put(`/purchase/${id}/cancel`)
 }
+
+export function getAiSuggest(storeId) {
+  return request.get('/purchase/ai-suggest', { params: { storeId } })
+}

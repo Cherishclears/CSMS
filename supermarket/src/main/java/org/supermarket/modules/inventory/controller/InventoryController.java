@@ -57,4 +57,15 @@ public class InventoryController {
         inventoryService.adjust(storeId, productId, newQty, remark);
         return Result.ok("调整成功");
     }
+
+    // 设置预警下限
+    @PutMapping("/warning")
+    public Result<String> updateWarning(@RequestParam Long storeId,
+                                        @RequestParam Long productId,
+                                        @RequestParam BigDecimal warningQty) {
+        inventoryService.updateWarningQty(storeId, productId, warningQty);
+        return Result.ok("设置成功");
+    }
+
+
 }

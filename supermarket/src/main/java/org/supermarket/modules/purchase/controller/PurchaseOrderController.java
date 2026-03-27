@@ -5,9 +5,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.supermarket.common.result.Result;
+import org.supermarket.modules.purchase.dto.AiSuggestVO;
 import org.supermarket.modules.purchase.dto.PurchaseOrderDTO;
 import org.supermarket.modules.purchase.entity.PurchaseOrder;
 import org.supermarket.modules.purchase.service.PurchaseOrderService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/purchase")
@@ -59,5 +62,10 @@ public class PurchaseOrderController {
     public Result<String> cancel(@PathVariable Long id) {
         purchaseOrderService.cancelOrder(id);
         return Result.ok("取消成功");
+    }
+    // AI 智能补货建议
+    @GetMapping("/ai-suggest")
+    public Result<List<AiSuggestVO>> aiSuggest(@RequestParam Long storeId) {
+        return Result.ok(purchaseOrderService.aiSuggest(storeId));
     }
 }

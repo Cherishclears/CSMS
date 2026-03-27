@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.supermarket.modules.inventory.mapper.InventoryMapper;
 import org.supermarket.modules.member.entity.Member;
 import org.supermarket.modules.member.mapper.MemberMapper;
@@ -60,6 +61,7 @@ public class StatsServiceImpl implements StatsService {
         this.categoryMapper = categoryMapper;
         this.chatClient = chatClientBuilder.build();
     }
+
 
     @Override
     public StatsVO getDashboard(Long storeId, String startDate, String endDate) {

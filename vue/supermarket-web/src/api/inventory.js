@@ -19,3 +19,7 @@ export function outbound(params) {
 export function adjust(params) {
   return request.post('/inventory/adjust', null, { params })
 }
+
+export function updateWarningQty(params) {
+  return request.put('/inventory/warning', null, { params })
+}

@@ -11,4 +11,6 @@ public interface StatsService {
     MonthlyStatsVO getLastMonthStats(Long storeId);
 
     void generateReport(Long storeId, jakarta.servlet.http.HttpServletResponse response) throws Exception;
+
+
 }

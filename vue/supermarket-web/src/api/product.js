@@ -15,6 +15,11 @@ export function updateProduct(data) {
   return request.put('/product', data)
 }
 
+// 根据ID查询
+export function getProductById(id) {
+  return request.get(`/product/${id}`)
+}
+
 // 删除商品
 export function deleteProduct(id) {
   return request.delete(`/product/${id}`)
