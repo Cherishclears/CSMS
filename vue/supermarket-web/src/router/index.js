@@ -64,6 +64,11 @@ const router = createRouter({
           path: 'store-product',
           name: 'store-product',
           component: () => import('../views/product/StoreProductView.vue')
+        },
+        {
+          path: 'user',
+          name: 'user',
+          component: () => import('../views/user/UserView.vue')
         }
       ]
     },
@@ -86,7 +91,7 @@ router.beforeEach((to, from, next) => {
   if (!userStore.isLoggedIn) return next('/login')
 
   // 收银员只能访问这三个页面
-  const cashierAllowed = ['/cashier', '/sale', '/member']
+  const cashierAllowed = ['/cashier', '/sale', '/member', '/user']
   if (userStore.isCashier && !cashierAllowed.includes(to.path)) {
     return next('/cashier')
   }

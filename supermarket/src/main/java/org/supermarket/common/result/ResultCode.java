@@ -19,6 +19,8 @@ public enum ResultCode {
     USER_NOT_FOUND(1001, "用户不存在"),
     USER_DISABLED(1002, "用户已被禁用"),
     USERNAME_OR_PASSWORD_ERROR(1003, "用户名或密码错误"),
+    USERNAME_EXISTS(1004, "用户名已存在"),
+    OLD_PASSWORD_ERROR(1005, "旧密码错误"),
 
     // 商品相关 2xxx
     PRODUCT_NOT_FOUND(2001, "商品不存在"),

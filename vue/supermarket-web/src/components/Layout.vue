@@ -58,6 +58,10 @@
           <el-icon><User /></el-icon>
           <span>会员管理</span>
         </el-menu-item>
+        <el-menu-item index="/user">
+          <el-icon><Avatar /></el-icon>
+          <span>用户管理</span>
+        </el-menu-item>
       </el-menu>
     </el-aside>
 
@@ -142,7 +146,8 @@ const pageTitleMap = {
   '/inventory': '库存管理',
   '/purchase': '采购管理',
   '/sale': '销售管理',
-  '/member': '会员管理'
+  '/member': '会员管理',
+  '/user': '用户管理'
 }
 
 const pageTitle = computed(() => pageTitleMap[route.path] || '')

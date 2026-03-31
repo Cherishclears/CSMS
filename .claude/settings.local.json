@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat /e/javalearning/super/vue/supermarket-web/src/api/*.js)",
+      "Bash(find /e/javalearning/super/vue/supermarket-web/src -type f -name *.js -o -name *.vue -o -name *.json)"
+    ]
+  }
+}
